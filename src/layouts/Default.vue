@@ -1,9 +1,7 @@
 <template>
-  <div>
+  <div class="home">
     <sui-container>
-      <sui-grid :columns="12">
-        <router-view></router-view>
-      </sui-grid>
+      <router-view></router-view>
     </sui-container>
   </div>
 </template>
@@ -13,5 +11,9 @@ export default {};
 <style>
 body {
   background: #000 url(//cssanimation.rocks/demo/starwars/images/bg.jpg);
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #ffffff;
 }
 </style>

@@ -11,7 +11,7 @@ export const mutations = {
 				title: gif.title,
 				rating: gif.rating,
 				height: gif.images.original.height,
-				width: gif.mages.original.width,
+				width: gif.images.original.width,
 				url: gif.images.original.url,
 				username: gif.username,
 				importDateTime: gif.import_datetime,
@@ -23,8 +23,8 @@ export const mutations = {
 	}
 }
 export const actions = {
-	async getGifs({ dispatch }, { query, offset }) {
+	async getGifs({ commit }, { query, offset }) {
 		let gifs = await getGifsByOffset(query, offset)
-		dispatch("ADD_GIFS", gifs)
+		commit("ADD_GIFS", gifs)
 	}
 }
