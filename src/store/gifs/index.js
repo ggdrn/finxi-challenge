@@ -26,5 +26,8 @@ export const actions = {
 	async getGifs({ commit }, { query, offset }) {
 		let gifs = await getGifsByOffset(query, offset)
 		commit("ADD_GIFS", gifs)
+	},
+	clearGifs({commit}){
+		commit("CLEAR_GIFS")
 	}
 }
