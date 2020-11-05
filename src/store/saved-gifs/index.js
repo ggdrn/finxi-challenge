@@ -1,4 +1,4 @@
-import { editSavedGifs, deleteSavedGifs, addSavedGifs } from "./services";
+import { editSavedGifs, deleteSavedGifs, addSavedGifs } from "../../services";
 
 export const state = {
 	savedGifs: [],

@@ -1,11 +1,15 @@
 <template>
-  <div id="app">
-  </div>
+  <div id="app"></div>
 </template>
 
 <script>
+// Vuex imports
+import { mapActions, mapState } from "vuex";
 export default {
   name: "App",
+  async created() {
+    
+  },
 };
 </script>
 
