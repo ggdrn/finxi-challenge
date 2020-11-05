@@ -1,6 +1,7 @@
+import { editSavedGifs, deleteSavedGifs, addSavedGifs } from "./services";
+
 export const state = {
 	savedGifs: [],
-
 };
 export const mutations = {
 	ADD_SAVEDGIFS(state, gif) {
@@ -20,4 +21,39 @@ export const mutations = {
 
 	}
 }
-export const actions = {}
+export const actions = {
+	async editSavedGifs({ commit }, gif) {
+		// save gif in database
+		let { success, error } = await editSavedGifs(gif);
+		if (success) {
+			// commit saved gif in state
+			commit("EDIT_SAVEGIFS", gif)
+			return success
+		} else {
+			return error
+		}
+	},
+	async addSavedGifs({ commit }, gif) {
+		// added gif in database
+		let { success, error } = await addSavedGifs(gif);
+		if (success) {
+			// commit saved gif in state
+			commit("ADD_SAVEDGIFS", gif)
+			return success
+		} else {
+			return error
+		}
+	},
+	async deleteSavedGifs({ commit }, gif) {
+		// save gif in database
+		let { success, error } = await deleteSavedGifs(gif);
+		if (success) {
+			// remove saved gif in state
+			commit("DELETE_SAVEDGIFS", gif)
+			return success
+		} else {
+			return error
+		}
+	}
+
+}
