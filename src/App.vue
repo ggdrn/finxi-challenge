@@ -4,11 +4,11 @@
 
 <script>
 // Vuex imports
-import { mapActions, mapState } from "vuex";
+// import { mapActions, mapState } from "vuex";
 export default {
   name: "App",
   async created() {
-    
+
   },
 };
 </script>
