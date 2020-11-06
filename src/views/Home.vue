@@ -15,6 +15,11 @@
         </div>
       </sui-segment>
       <Search @search-gifs="searchGifs($event)" />
+      <sui-container aligned="center">
+        <sui-grid :columns="3">
+          <GifCard v-for="gif in gifs" :item="gif" :key="gif.id" />
+        </sui-grid>
+      </sui-container>
     </template>
   </div>
 </template>
@@ -26,24 +31,26 @@ import { mapActions, mapState } from "vuex";
 // componets
 import CrawText from "../components/Craw-Text";
 import Search from "../components/Search";
+import GifCard from "../components/Gif-Card";
 
 export default {
   name: "App",
-  components: { CrawText, Search },
+  components: { CrawText, Search, GifCard },
   data: () => ({
-		skipCrawText: true, // skip introducion
-		offset: 0, // gif page position
-		query: "" // value received from the input to search for gifs
+    skipCrawText: true, // skip introducion
+    offset: 0, // gif page position
+    query: "", // value received from the input to search for gifs
   }),
   async created() {},
   methods: {
-		...mapActions("gifs", ["getGifs", "clearGifs"]),
-		// function that fetches gifs from the input
+    ...mapActions("gifs", ["getGifs", "clearGifs"]),
+    // function that fetches gifs from the input
     searchGifs(search) {
-			// saving the value of the search to be performed when scrolling the page 
-			this.query = search
+      // saving the value of the search to be performed when scrolling the page
+      this.query = search;
       this.clearGifs(); // remove arry's gifs
-      this.getGifs(search, this.offset);
+      console.log(search);
+      this.getGifs({ query: search, offset: this.offset });
     },
   },
   computed: {

@@ -1,6 +1,6 @@
 <template>
-  <div class="home">
-    <sui-container>
+  <div>
+    <sui-container fluid>
       <router-view></router-view>
     </sui-container>
   </div>
