@@ -1,6 +1,11 @@
 <template>
   <div>
-    <CrawText v-if="skipCrawText" @skip-intro="skipCrawText = $event" />
+    <transition name="fade">
+      <CrawText v-if="skipCrawText" @skip-intro="skipCrawText = $event" />
+      <template v-else>
+				
+			</template>
+    </transition>
   </div>
 </template>
 
@@ -35,4 +40,13 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+/* Transtiton component animation */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active em versões anteriores a 2.1.8 */ {
+  opacity: 0;
+}
+</style>
