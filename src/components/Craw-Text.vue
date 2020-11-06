@@ -46,7 +46,7 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 .skip-button {
   position: fixed;
   bottom: 30px;

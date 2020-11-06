@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="gif-card">
     <sui-card>
       <sui-image :src="item.url" />
       <sui-card-content>
@@ -26,4 +26,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.gif-card{
+	margin: 15px;
+}
+</style>

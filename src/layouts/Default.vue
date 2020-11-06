@@ -1,4 +1,4 @@
-<template>
+<template lang="html">
   <div>
     <sui-container fluid>
       <router-view></router-view>
@@ -6,7 +6,9 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  name: "Default",
+};
 </script>
 <style>
 body {
