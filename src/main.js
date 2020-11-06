@@ -6,8 +6,7 @@ import router from "./router";
 import PortalVue from 'portal-vue';
 
 Vue.config.productionTip = false
-Vue.use(SuiVue);
-Vue.use(PortalVue);
+Vue.use(SuiVue, PortalVue);
 
 new Vue({
   store,
