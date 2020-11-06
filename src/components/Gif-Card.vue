@@ -15,11 +15,9 @@
                 name="like"
               />
             </sui-card-header>
-            <sui-card-meta>{{
-              item.username == "" ? "Usuário Desconhecido" : item.username
-            }}</sui-card-meta>
+            <sui-card-meta>{{ username }}</sui-card-meta>
             <sui-card-description
-              >Classificação: {{ item.rating }}.</sui-card-description
+              >Classificação: {{ rating }}</sui-card-description
             >
           </sui-card-content>
           <sui-button color="yellow" attached="bottom">
@@ -34,6 +32,7 @@
 <script>
 // Vuex imports
 import { mapActions } from "vuex";
+import { ratingDictionary } from "../utils";
 
 export default {
   name: "GifCard",
@@ -44,13 +43,25 @@ export default {
     },
   }),
   props: {
-    item: Object,
+    item: {
+      type: Object,
+      default: () => ({}),
+    },
   },
   methods: {
     ...mapActions("savedGifs", ["addSavedGifs"]),
     async saveGif() {
       await this.addSavedGifs(this.item);
     },
+  },
+  computed: {
+    // Props Computed
+    rating() {
+      return ratingDictionary[this.item.rating];
+    },
+    username() {
+      return this.item.username == "" ? "Usuário Desconhecido" : this.item.username
+    }
   },
 };
 </script>
