@@ -3,8 +3,13 @@
     <transition name="fade">
       <CrawText v-if="skipCrawText" @skip-intro="skipCrawText = $event" />
       <template v-else>
-				
-			</template>
+        <sui-segment vertical aligned="center">
+          <div class="ui text container">
+            <h1>Deasfio Finxi</h1>
+            <h2>Vamos destruir Darth Vader usadno as melhores Gifs da Giphy API!</h2>
+          </div>
+        </sui-segment>
+      </template>
     </transition>
   </div>
 </template>
@@ -41,6 +46,10 @@ export default {
 </script>
 
 <style>
+h1 {
+  color: #ff6;
+  font-size: 40px;
+}
 /* Transtiton component animation */
 .fade-enter-active,
 .fade-leave-active {
