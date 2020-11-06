@@ -14,7 +14,7 @@
           </h2>
         </div>
       </sui-segment>
-      <Search @search-gifs="searchGifs($event)" />
+      <Search :loading="loading" @search-gifs="searchGifs($event)" />
       <sui-container aligned="center">
         <sui-grid :columns="3">
           <GifCard v-for="gif in gifs" :item="gif" :key="gif.id" />
@@ -40,17 +40,20 @@ export default {
     skipCrawText: true, // skip introducion
     offset: 0, // gif page position
     query: "", // value received from the input to search for gifs
+    loading: false, // requisition loading feedback
   }),
   async created() {},
   methods: {
     ...mapActions("gifs", ["getGifs", "clearGifs"]),
     // function that fetches gifs from the input
     searchGifs(search) {
+      this.loading = true;
       // saving the value of the search to be performed when scrolling the page
       this.query = search;
       this.clearGifs(); // remove arry's gifs
       console.log(search);
       this.getGifs({ query: search, offset: this.offset });
+      this.loading = false;
     },
   },
   computed: {
