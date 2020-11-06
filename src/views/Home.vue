@@ -1,16 +1,21 @@
 <template>
   <div>
-    <transition name="fade">
-      <CrawText v-if="skipCrawText" @skip-intro="skipCrawText = $event" />
-      <template v-else>
-        <sui-segment vertical aligned="center">
-          <div class="ui text container">
-            <h1>Deasfio Finxi</h1>
-            <h2>Vamos destruir Darth Vader usadno as melhores Gifs da Giphy API!</h2>
-          </div>
-        </sui-segment>
-      </template>
-    </transition>
+    <template v-if="skipCrawText">
+      <transition name="fade">
+        <CrawText @skip-intro="skipCrawText = $event" />
+      </transition>
+    </template>
+    <template v-else>
+      <sui-segment vertical aligned="center">
+        <div class="ui text container">
+          <h1>Deasfio Finxi</h1>
+          <h2>
+            Vamos destruir Darth Vader usadno as melhores Gifs da Giphy API!
+          </h2>
+        </div>
+      </sui-segment>
+      <Search @search-gifs="searchGifs($event)" />
+    </template>
   </div>
 </template>
 
@@ -20,19 +25,26 @@ import { mapActions, mapState } from "vuex";
 
 // componets
 import CrawText from "../components/Craw-Text";
+import Search from "../components/Search";
 
 export default {
   name: "App",
-  components: { CrawText },
+  components: { CrawText, Search },
   data: () => ({
-    skipCrawText: true,
+		skipCrawText: true, // skip introducion
+		offset: 0, // gif page position
+		query: "" // value received from the input to search for gifs
   }),
-  async created() {
-    this.clearGifs();
-    this.getGifs("naruto", 2);
-  },
+  async created() {},
   methods: {
-    ...mapActions("gifs", ["getGifs", "clearGifs"]),
+		...mapActions("gifs", ["getGifs", "clearGifs"]),
+		// function that fetches gifs from the input
+    searchGifs(search) {
+			// saving the value of the search to be performed when scrolling the page 
+			this.query = search
+      this.clearGifs(); // remove arry's gifs
+      this.getGifs(search, this.offset);
+    },
   },
   computed: {
     ...mapState("gifs", ["gifs"]),
@@ -47,7 +59,7 @@ export default {
 
 <style>
 h1 {
-  color: #ff6;
+  color: #ffe81f;
   font-size: 40px;
 }
 /* Transtiton component animation */
