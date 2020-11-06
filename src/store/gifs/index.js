@@ -27,7 +27,7 @@ export const actions = {
 		let gifs = await getGifsByOffset(query, offset)
 		commit("ADD_GIFS", gifs)
 	},
-	clearGifs({commit}){
+	clearGifs({ commit }) {
 		commit("CLEAR_GIFS")
 	}
 }

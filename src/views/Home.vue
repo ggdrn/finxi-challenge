@@ -20,6 +20,9 @@
           <GifCard v-for="gif in gifs" :item="gif" :key="gif.id" />
         </sui-grid>
       </sui-container>
+      <sui-segment inverted aligned="center" v-if="loading && gifs.length">
+        <sui-icon name="notched circle" loading />
+      </sui-segment>
     </template>
   </div>
 </template>
@@ -47,6 +50,7 @@ export default {
     ...mapActions("gifs", ["getGifs", "clearGifs"]),
     // function that fetches gifs from the input
     async searchGifs(search) {
+      this.offset = 0;
       this.loading = true;
       // saving the value of the search to be performed when scrolling the page
       this.query = search;
@@ -54,6 +58,22 @@ export default {
       await this.getGifs({ query: search, offset: this.offset });
       this.loading = false;
     },
+    async scroll() {
+      window.onscroll = async () => {
+        let bottomOfWindow =
+          document.documentElement.scrollTop + window.innerHeight ===
+          document.documentElement.scrollHeight;
+        if (bottomOfWindow) {
+          this.offset += 18;
+          this.loading = true;
+          await this.getGifs({ query: this.query, offset: this.offset });
+          this.loading = false;
+        }
+      };
+    },
+  },
+  async mounted() {
+    await this.scroll();
   },
   computed: {
     ...mapState("gifs", ["gifs"]),
