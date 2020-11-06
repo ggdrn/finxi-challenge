@@ -1,18 +1,36 @@
 <template>
   <div class="gif-card">
+    <sui-popup :content="message" inverted>
+      <sui-button slot="trigger" icon="add" />
+    </sui-popup>
     <sui-card>
       <sui-image :src="item.url" />
       <sui-card-content>
-        <sui-card-header>{{item.title}}</sui-card-header>
-        <sui-card-meta>{{item.username}}</sui-card-meta>
+        <sui-card-header>{{ item.title }}</sui-card-header>
+        <sui-card-meta>{{
+          item.username == "" ? "Usuário Desconhecido" : item.username
+        }}</sui-card-meta>
         <sui-card-description
-          >Kristy is an art director living in New York.</sui-card-description
+          >Classificação: {{ item.rating }}.</sui-card-description
         >
       </sui-card-content>
-      <sui-card-content extra>
-        <sui-icon name="user" />
-        22 Friends
-      </sui-card-content>
+      <sui-button color="yellow" attached="bottom">
+        <sui-icon name="info" /> Mais Informações
+      </sui-button>
+      <!-- <sui-card-content extra>
+        <sui-container aligned="center">
+          <sui-grid centered>
+            <sui-grid-row :columns="2">
+              <sui-grid-column>
+                <sui-button icon="heart" color="yellow">Salvar</sui-button>
+              </sui-grid-column>
+              <sui-grid-column>
+                <sui-button icon="info" color="yellow">Mais Info.</sui-button>
+              </sui-grid-column>
+            </sui-grid-row>
+          </sui-grid>
+        </sui-container> -->
+      <!-- </sui-card-content> -->
     </sui-card>
   </div>
 </template>
@@ -20,6 +38,9 @@
 <script>
 export default {
   name: "GifCard",
+  data: () => ({
+    message: "Clique para salvar a gif",
+  }),
   props: {
     item: Object,
   },
@@ -27,7 +48,7 @@ export default {
 </script>
 
 <style>
-.gif-card{
-	margin: 15px;
+.gif-card {
+  margin: 15px;
 }
 </style>
