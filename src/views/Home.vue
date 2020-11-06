@@ -10,7 +10,7 @@
         <div class="ui text container">
           <h1>Deasfio Finxi</h1>
           <h2>
-            Vamos destruir Darth Vader usadno as melhores Gifs da Giphy API!
+            Vamos destruir Darth Vader usando as melhores Gifs da Giphy API!
           </h2>
         </div>
       </sui-segment>
