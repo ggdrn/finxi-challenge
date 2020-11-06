@@ -14,22 +14,18 @@
           </h2>
         </div>
       </sui-segment>
-      <Search :loading="loading" @search-gifs="searchGifs($event)" />
+      <Search
+        :loading="loading"
+        @alert-message="message = $event"
+        @search-gifs="searchGifs($event)"
+      />
+      <Alert :message="message" @close-alert="message.show = $event" />
       <sui-container aligned="center">
         <sui-grid :columns="3">
           <GifCard v-for="gif in gifs" :item="gif" :key="gif.id" />
         </sui-grid>
       </sui-container>
-      <sui-segment
-        inverted
-        aligned="center"
-        v-if="loading && gifs.length && !finished"
-      >
-        <sui-icon name="notched circle" loading />
-      </sui-segment>
-      <sui-segment inverted aligned="center" v-if="finished">
-        <p>ACABOU! VOCÊ TEM TUDO PARA MATAR O LORD VADER DE TANTO RIR!</p>
-      </sui-segment>
+      <Footer :loading="loading" :finished="finished" :length="gifs.length" />
     </template>
   </div>
 </template>
@@ -42,29 +38,47 @@ import { mapActions, mapState } from "vuex";
 import CrawText from "../components/Craw-Text";
 import Search from "../components/Search";
 import GifCard from "../components/Gif-Card";
+import Alert from "../components/Alert";
+// layout
+import Footer from "../layouts/Footer";
 
 export default {
   name: "App",
-  components: { CrawText, Search, GifCard },
+  components: { CrawText, Search, GifCard, Footer, Alert },
   data: () => ({
     skipCrawText: true, // skip introducion
     offset: 0, // gif page position
     query: "", // value received from the input to search for gifs
     loading: false, // requisition loading feedback
     finished: false, //  finished request of Request Gifs feedback
+    message: {
+      // warning, error, success message
+      text: "",
+      title: "",
+      color: "",
+      show: false,
+    },
   }),
   async created() {},
   methods: {
     ...mapActions("gifs", ["getGifs", "clearGifs"]),
     // function that fetches gifs from the input
     async searchGifs(search) {
+      this.loading = true;
+      this.message.show = false;
       this.offset = 0;
       this.finished = false;
-      this.loading = true;
       // saving the value of the search to be performed when scrolling the page
       this.query = search;
       this.clearGifs(); // remove arry's gifs
       await this.getGifs({ query: search, offset: this.offset });
+      if (!this.gifs.length)
+        this.message = {
+          title: "Você digitou algo engraçado?",
+          text: "Nenhuma gif foi localizada",
+          color: "warning",
+          show: true,
+        };
       this.loading = false;
     },
     async scroll() {
