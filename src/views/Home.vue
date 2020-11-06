@@ -20,8 +20,15 @@
           <GifCard v-for="gif in gifs" :item="gif" :key="gif.id" />
         </sui-grid>
       </sui-container>
-      <sui-segment inverted aligned="center" v-if="loading && gifs.length">
+      <sui-segment
+        inverted
+        aligned="center"
+        v-if="loading && gifs.length && !finished"
+      >
         <sui-icon name="notched circle" loading />
+      </sui-segment>
+      <sui-segment inverted aligned="center" v-if="finished">
+        <p>ACABOU! VOCÊ TEM TUDO PARA MATAR O LORD VADER DE TANTO RIR!</p>
       </sui-segment>
     </template>
   </div>
@@ -44,6 +51,7 @@ export default {
     offset: 0, // gif page position
     query: "", // value received from the input to search for gifs
     loading: false, // requisition loading feedback
+    finished: false, //  finished request of Request Gifs feedback
   }),
   async created() {},
   methods: {
@@ -51,6 +59,7 @@ export default {
     // function that fetches gifs from the input
     async searchGifs(search) {
       this.offset = 0;
+      this.finished = false;
       this.loading = true;
       // saving the value of the search to be performed when scrolling the page
       this.query = search;
@@ -66,7 +75,8 @@ export default {
         if (bottomOfWindow) {
           this.offset += 18;
           this.loading = true;
-          await this.getGifs({ query: this.query, offset: this.offset });
+          if (this.offset >= this.totalCount) this.finished = true;
+          else await this.getGifs({ query: this.query, offset: this.offset });
           this.loading = false;
         }
       };
@@ -76,7 +86,7 @@ export default {
     await this.scroll();
   },
   computed: {
-    ...mapState("gifs", ["gifs"]),
+    ...mapState("gifs", ["gifs", "totalCount"]),
   },
 };
 </script>

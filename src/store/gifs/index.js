@@ -2,9 +2,11 @@ import { getGifsByOffset } from "../../services";
 
 export const state = {
 	gifs: [],
+	totalCount: 0
 };
 export const mutations = {
-	ADD_GIFS(state, gifs) {
+	ADD_GIFS(state, { gifs, pagination }) {
+		state.totalCount = pagination.total_count
 		gifs.forEach(gif => {
 			state.gifs.push({
 				id: gif.id,
@@ -24,8 +26,8 @@ export const mutations = {
 }
 export const actions = {
 	async getGifs({ commit }, { query, offset }) {
-		let gifs = await getGifsByOffset(query, offset)
-		commit("ADD_GIFS", gifs)
+		let { gifs, pagination } = await getGifsByOffset(query, offset)
+		commit("ADD_GIFS", { gifs, pagination })
 	},
 	clearGifs({ commit }) {
 		commit("CLEAR_GIFS")
