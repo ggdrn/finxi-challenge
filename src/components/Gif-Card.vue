@@ -1,6 +1,6 @@
 <template>
   <div class="gif-card">
-    <sui-popup :content="message" inverted>
+    <sui-popup :content="message.txt" :header="message.title" inverted>
       <sui-button slot="trigger" icon="heart" />
     </sui-popup>
     <sui-card>
@@ -39,7 +39,10 @@
 export default {
   name: "GifCard",
   data: () => ({
-    message: "Clique para salvar a gif",
+    message: {
+      text: "Clique para salvar a GIF!",
+      title: "Gostou?"
+    },
   }),
   props: {
     item: Object,
