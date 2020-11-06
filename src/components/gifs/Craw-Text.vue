@@ -2,7 +2,7 @@
   <div>
     <sui-container textAlign="center">
       <div id="intro">
-        A long time ago, in a galaxy far,<br />
+        A long time ago, in a galaxy far,
         far away....
       </div>
     </sui-container>
@@ -59,6 +59,7 @@ export default {
   position: absolute;
   width: 90%;
   top: 50%;
+  padding: 30px;
   transform: translateY(-50%);
   color: rgb(75, 213, 238);
   font-size: 200%;
@@ -165,7 +166,7 @@ body {
 /* IMAGES */
 
 #logo {
-  background-image: url("./../assets/logo_sw.png"); /* CUSTOM LOGO */
+  background-image: url("./../../assets/logo_sw.png"); /* CUSTOM LOGO */
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center center;

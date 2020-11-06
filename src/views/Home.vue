@@ -35,9 +35,9 @@
 import { mapActions, mapState } from "vuex";
 
 // componets
-import CrawText from "../components/Craw-Text";
-import Search from "../components/Search";
-import GifCard from "../components/Gif-Card";
+import CrawText from "../components/gifs/Craw-Text";
+import Search from "../components/gifs/Search";
+import GifCard from "../components/gifs/Gif-Card";
 import Alert from "../components/Alert";
 // layout
 import Footer from "../layouts/Footer";

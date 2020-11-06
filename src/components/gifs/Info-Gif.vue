@@ -23,7 +23,7 @@
 
 <script>
 // utils
-import { ratingDictionary } from "../utils";
+import { ratingDictionary } from "../../utils";
 export default {
   name: "InfoGif",
   props: { open: Boolean, gif: Object },

@@ -37,7 +37,7 @@
 import { mapActions } from "vuex";
 
 //Utils
-import { ratingDictionary } from "../utils";
+import { ratingDictionary } from "../../utils";
 
 // Components
 import InfoGif from "./Info-Gif";
