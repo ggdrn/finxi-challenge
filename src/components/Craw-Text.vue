@@ -165,7 +165,7 @@ body {
 /* IMAGES */
 
 #logo {
-  background-image: url("https://www.tribunadeituverava.com.br/wp-content/uploads/2019/12/star-wars-logo-2.png");
+  background-image: url("./../assets/logo_sw.png"); /* CUSTOM LOGO */
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center center;

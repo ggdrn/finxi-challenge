@@ -46,23 +46,17 @@ export default {
   methods: {
     ...mapActions("gifs", ["getGifs", "clearGifs"]),
     // function that fetches gifs from the input
-    searchGifs(search) {
+    async searchGifs(search) {
       this.loading = true;
       // saving the value of the search to be performed when scrolling the page
       this.query = search;
       this.clearGifs(); // remove arry's gifs
-      console.log(search);
-      this.getGifs({ query: search, offset: this.offset });
+      await this.getGifs({ query: search, offset: this.offset });
       this.loading = false;
     },
   },
   computed: {
     ...mapState("gifs", ["gifs"]),
-  },
-  watch: {
-    gifs: function() {
-      console.log(this.gifs);
-    },
   },
 };
 </script>

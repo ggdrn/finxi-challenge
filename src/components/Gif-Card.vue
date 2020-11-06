@@ -1,7 +1,7 @@
 <template>
   <div class="gif-card">
     <sui-popup :content="message" inverted>
-      <sui-button slot="trigger" icon="add" />
+      <sui-button slot="trigger" icon="heart" />
     </sui-popup>
     <sui-card>
       <sui-image :src="item.url" />

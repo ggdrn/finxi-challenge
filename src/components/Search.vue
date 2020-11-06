@@ -8,11 +8,13 @@
             v-model="search"
             @keyup.enter="searchGifs()"
             placeholder="buscar"
+            :disabled="loading"
           />
         </sui-grid-column>
         <sui-button
           icon="search"
           color="yellow"
+          :loading="loading"
           @click="searchGifs()"
         ></sui-button>
       </sui-grid-row>
