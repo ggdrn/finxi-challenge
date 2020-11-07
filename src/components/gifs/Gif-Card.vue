@@ -50,7 +50,7 @@ export default {
       text: "Clique no coração para salvar essa GIF! :)",
       title: "Gostou?",
     },
-    gifUrl: "",
+    gifUrl: require("../.././assets/loading.gif"),
   }),
   components: { InfoGif },
   props: {
@@ -74,8 +74,6 @@ export default {
       myImage.onload = () => {
         this.gifUrl = myImage.src;
       };
-      this.gifUrl =
-        "https://miro.medium.com/max/882/1*9EBHIOzhE1XfMYoKz1JcsQ.gif";
     },
   },
   computed: {
