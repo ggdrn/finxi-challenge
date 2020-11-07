@@ -1,35 +1,35 @@
 <template>
-  <div>
-    <InfoGif :open="open" :gif="item" @close-modal="open = false" />
-    <transition name="bounce">
+  <transition name="bounce">
+    <div>
       <div class="gif-card">
-        <sui-popup :content="message.text" :header="message.title">
-          <sui-card slot="trigger" class="raised link">
-            <sui-image :src="item.url" />
-            <sui-card-content>
-              <sui-card-header
-                >{{ item.title }}
-                <sui-icon
-                  class="right floated"
-                  @click="saveGif"
-                  circular
-                  size="small"
-                  name="like"
-                />
-              </sui-card-header>
-              <sui-card-meta>{{ username }}</sui-card-meta>
-              <sui-card-description
-                >Classificação: {{ rating }}</sui-card-description
-              >
-            </sui-card-content>
-            <sui-button @click="open = true" color="yellow" attached="bottom">
-              <sui-icon name="info" /> Mais Informações
-            </sui-button>
-          </sui-card>
-        </sui-popup>
+        <!-- <sui-popup :content="message.text" :header="message.title"> -->
+        <sui-card slot="trigger" style="cursor: default" class="raised link">
+          <sui-image :src="item.url" />
+          <sui-card-content>
+            <sui-card-header
+              >{{ item.title }}
+              <sui-icon
+                class="right floated"
+                @click="saveGif"
+                circular
+                size="small"
+                name="like"
+              />
+            </sui-card-header>
+            <sui-card-meta>{{ username }}</sui-card-meta>
+            <sui-card-description
+              >Classificação: {{ rating }}</sui-card-description
+            >
+          </sui-card-content>
+          <sui-button @click="open = true" color="yellow" attached="bottom">
+            <sui-icon name="info" /> Mais Informações
+          </sui-button>
+        </sui-card>
+        <!-- </sui-popup> -->
       </div>
-    </transition>
-  </div>
+      <InfoGif :open="open" :gif="item" @close-modal="open = false" />
+    </div>
+  </transition>
 </template>
 
 <script>

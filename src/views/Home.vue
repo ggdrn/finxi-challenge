@@ -8,7 +8,7 @@
     <template v-else>
       <sui-segment vertical aligned="center">
         <div class="ui text container">
-          <h1>Deasfio Finxi</h1>
+          <h1>Desafio Finxi</h1>
           <h2>
             Vamos destruir Darth Vader usando as melhores Gifs da Giphy API!
           </h2>
@@ -89,8 +89,11 @@ export default {
         if (bottomOfWindow) {
           this.offset += 18;
           this.loading = true;
-          if (this.offset >= this.totalCount) this.finished = true;
-          else await this.getGifs({ query: this.query, offset: this.offset });
+          if (this.offset >= this.totalCount) {
+            this.finished = true;
+          } else {
+            await this.getGifs({ query: this.query, offset: this.offset });
+          }
           this.loading = false;
         }
       };
