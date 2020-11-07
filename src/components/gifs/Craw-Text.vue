@@ -2,8 +2,7 @@
   <div>
     <sui-container textAlign="center">
       <div id="intro">
-        A long time ago, in a galaxy far,
-        far away....
+        A long time ago, in a galaxy far, far away....
       </div>
     </sui-container>
     <div id="logo"></div>
@@ -32,18 +31,45 @@
         color="yellow"
         >Pular Abertura</sui-button
       >
+      <sui-button
+        @click="playMusic()"
+        inverted
+        class="sound-button"
+        :icon="volumeIcon"
+        color="yellow"
+      ></sui-button>
     </sui-container>
   </div>
 </template>
 <script>
+//utils
+import { swTheme } from "../../utils";
 export default {
   name: "CrawText",
-  created() {},
+  data: () => ({
+    audio: new Audio(swTheme),
+    sound: false,
+  }),
   methods: {
     skipIntro() {
+      this.audio.pause();
       this.$emit("skip-intro", false);
     },
+    playMusic() {
+      if (!this.sound) {
+        this.audio.play();
+        this.sound = true
+      } else {
+        this.audio.pause();
+        this.sound = false
+      }
+    },
   },
+  computed: {
+    volumeIcon(){
+      return this.sound ? "volume off" : "volume up"
+    }
+  }
 };
 </script>
 <style scoped>
@@ -51,6 +77,11 @@ export default {
   position: fixed;
   bottom: 30px;
   right: 50px;
+}
+.sound-button {
+  position: fixed;
+  bottom: 30px;
+  /* right: 50px; */
 }
 @import url(https://fonts.googleapis.com/css?family=News+Cycle:400, 700);
 

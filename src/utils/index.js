@@ -13,3 +13,5 @@ export const ratingList = [
 	{ text: 'Maiores de 12 anos', value: 'pg-13' },
 	{ text: 'Maiores de 16 anos', value: 'r' },
 ]
+
+export const swTheme = "https://ia903204.us.archive.org/16/items/StarWarsThemeSongByJohnWilliams/Star%20Wars%20Theme%20Song%20By%20John%20Williams.mp3"
