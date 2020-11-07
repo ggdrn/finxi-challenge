@@ -7,7 +7,7 @@
           <sui-image :src="gifUrl" />
           <sui-card-content>
             <sui-card-header
-              >{{ item.title }}
+              >{{ title }}
               <sui-icon
                 class="right floated"
                 @click="saveGif"
@@ -20,6 +20,8 @@
                 v-if="editable"
                 class="right floated"
                 circular
+                style="cursor: pointer "
+                @click="$emit('edit-gif', true)"
                 size="small"
                 name="edit"
               />
@@ -99,6 +101,9 @@ export default {
     // Props Computed
     rating() {
       return ratingDictionary[this.item.rating];
+    },
+    title() {
+      return this.item.title == "" ? "Título desconhecido" : this.item.title;
     },
     username() {
       return this.item.username == ""
