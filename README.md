@@ -77,3 +77,5 @@ npm run serve
 ## Projeto inicializado
 
 Ao inicializar o projeto, este poderá ser acessado em: **http://localhost:8080**
+
+Ou você pode acessar o projeto online em: **https://finxi-challange.web.app/**
