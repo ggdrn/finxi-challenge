@@ -12,6 +12,7 @@
                 class="right floated"
                 @click="saveGif"
                 circular
+                :color="checkGif"
                 size="small"
                 name="like"
               />
@@ -63,9 +64,19 @@ export default {
     this.setImage();
   },
   methods: {
-    ...mapActions("savedGifs", ["addSavedGifs"]),
+    ...mapActions("savedGifs", ["addSavedGifs", "deleteSavedGifs"]),
+    ...mapActions("gifs", ["editGif"]),
     async saveGif() {
-      await this.addSavedGifs(this.item);
+      let gif = this.item;
+      if (!this.item.saved) {
+        gif.saved = true;
+        this.editGif(gif);
+        await this.addSavedGifs(this.item);
+      } else {
+        gif.saved = false;
+        this.editGif(gif);
+        this.deleteSavedGifs(gif);
+      }
     },
     setImage() {
       // loading the gif, to give feedback to the user
@@ -85,6 +96,9 @@ export default {
       return this.item.username == ""
         ? "Usuário Desconhecido"
         : this.item.username;
+    },
+    checkGif() {
+      return this.item.saved ? "red" : null;
     },
   },
 };

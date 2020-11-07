@@ -17,14 +17,25 @@ export const mutations = {
 				url: gif.images.original.url,
 				username: gif.username,
 				importDateTime: gif.import_datetime,
+				saved: false,
 			})
 		})
 	},
 	CLEAR_GIFS(state) {
 		state.gifs = []
-	}
+	},
+	EDIT_GIF(state, gif) {
+		state.gifs = state.gifs.map(g => {
+			if (g.id == gif.id)
+				g = gif
+			return g
+		})
+	},
 }
 export const actions = {
+	editGif({ commit }, gif) {
+		commit("EDIT_GIF", gif)
+	},
 	async getGifs({ commit }, { query, offset }) {
 		let { gifs, pagination } = await getGifsByOffset(query, offset)
 		commit("ADD_GIFS", { gifs, pagination })

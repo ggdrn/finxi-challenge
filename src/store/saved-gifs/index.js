@@ -8,9 +8,10 @@ export const mutations = {
 		state.savedGifs.push(gif)
 	},
 	EDIT_SAVEGIFS(state, gif) {
-		state.savedGifs.forEach(g => {
+		state.savedGifs = state.savedGifs.map(g => {
 			if (g.id == gif.id)
-				return g = gif
+				g = gif
+			return g
 		})
 	},
 	DELETE_SAVEDGIFS(state, gif) {
