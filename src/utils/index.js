@@ -6,3 +6,10 @@ export const ratingDictionary = {
 	"pg-13": "Maiores de 12 anos",
 	"r": "Maiores de 16 anos"
 }
+
+export const ratingList = [
+	{ text: 'Livre', value: 'g' },
+	{ text: 'Maiores de 10 anos', value: 'pg' },
+	{ text: 'Maiores de 12 anos', value: 'pg-13' },
+	{ text: 'Maiores de 16 anos', value: 'r' },
+]

@@ -4,7 +4,7 @@
     <sui-modal-content scrolling image>
       <sui-image size="medium" :src="gif.url" />
       <sui-modal-description>
-        <sui-header>{{ gif.title }}</sui-header>
+        <sui-header>{{ title }}</sui-header>
         <p><b>Usuário:</b> {{ username }}</p>
         <p><b>Data de Upload:</b> {{ importDateTime }}</p>
         <p><b>Classificação:</b> {{ rating }}</p>
@@ -32,13 +32,16 @@ export default {
     rating() {
       return ratingDictionary[this.gif.rating];
     },
-    modal(){
-      return this.open
+    modal() {
+      return this.open;
     },
     username() {
       return this.gif.username == ""
         ? "Usuário Desconhecido"
         : this.gif.username;
+    },
+    title() {
+      return this.gif.title == "" ? "Título desconhecido" : this.gif.title;
     },
     importDateTime() {
       return new Date(this.gif.importDateTime).toLocaleDateString();

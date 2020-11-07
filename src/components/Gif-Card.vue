@@ -21,7 +21,7 @@
                 class="right floated"
                 circular
                 style="cursor: pointer "
-                @click="$emit('edit-gif', true)"
+                @click="$emit('edit-gif', { edit: true, gif: item })"
                 size="small"
                 name="edit"
               />

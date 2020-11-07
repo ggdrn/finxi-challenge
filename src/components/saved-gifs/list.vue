@@ -17,15 +17,20 @@
         <sui-modal-description>
           <transition name="slide-fade">
             <template v-if="edit">
-              <p>EDITANO</p>
+              <EditSavedGif :gif="gif" />
             </template>
           </transition>
+          <sui-container v-if="!savedGifs.length">
+            <sui-grid centered :columns="1">
+              <h3>Você ainda não salvou nenhuma GIF!</h3>
+            </sui-grid>
+          </sui-container>
           <transition name="slide-fade">
             <template v-if="!edit">
               <sui-container>
                 <sui-grid centered :columns="2">
                   <GifCard
-                    @edit-gif="edit = $event"
+                    @edit-gif="editGifs($event)"
                     editable
                     v-for="gif in savedGifs"
                     :item="gif"
@@ -47,14 +52,24 @@
 </template>
 
 <script>
+//componets
 import GifCard from "../Gif-Card";
+import EditSavedGif from "./Edit";
+
 export default {
   name: "SavedGifList",
   props: { savedGifs: Array, open: Boolean },
-  components: { GifCard },
+  components: { GifCard, EditSavedGif },
   data: () => ({
     edit: false, // switch template
+    gif: {}, // gif that will be edited
   }),
+  methods: {
+    editGifs({ edit, gif }) {
+      this.edit = edit;
+      this.gif = gif;
+    },
+  },
   computed: {
     modal() {
       return this.open;
@@ -63,4 +78,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+h3 {
+  color: black;
+}
+</style>

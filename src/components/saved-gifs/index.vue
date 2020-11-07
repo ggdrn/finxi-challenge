@@ -21,12 +21,12 @@
 // vuex
 import { mapState } from "vuex";
 // components
-import SavedGifList from "./list";
+import SavedGifList from "./List";
 export default {
   name: "SavedGifs",
   components: { SavedGifList },
   data: () => ({
-    open: false
+    open: false,
   }),
   computed: {
     ...mapState("savedGifs", ["savedGifs"]),
