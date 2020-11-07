@@ -87,7 +87,8 @@ export default {
       this.editSavedGifs({
         ...this.gif,
         username: this.username,
-        title: this.title
+        title: this.title,
+        rating: this.rating,
       });
       this.loading = false;
       return (this.message = {
