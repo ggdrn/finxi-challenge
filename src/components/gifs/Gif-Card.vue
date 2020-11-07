@@ -68,7 +68,7 @@ export default {
       await this.addSavedGifs(this.item);
     },
     setImage() {
-      // loading the image, to give feedback to the user
+      // loading the gif, to give feedback to the user
       let myImage = new Image();
       myImage.src = this.item.url;
       myImage.onload = () => {
