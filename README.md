@@ -55,7 +55,7 @@ docker run -d -p 8080:8080 --name finxi-challenge finxi-challenge-image
 docker start finxi-challenge
 ```
 
-* **PARA O CONTAINER:** 
+* **PARAR O CONTAINER:** 
 
 ```
 docker stop -t 0 finxi-challenge
