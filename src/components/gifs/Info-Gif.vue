@@ -33,7 +33,7 @@ export default {
       return ratingDictionary[this.gif.rating];
     },
     modal() {
-      return this.open;
+      return this.open; // modal controller
     },
     username() {
       return this.gif.username == ""

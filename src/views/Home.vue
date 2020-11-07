@@ -85,6 +85,7 @@ export default {
     },
     async scroll() {
       window.onscroll = async () => {
+        // verification if the entire scroll went down
         let bottomOfWindow =
           document.documentElement.scrollTop + window.innerHeight ===
           document.documentElement.scrollHeight;
@@ -92,6 +93,7 @@ export default {
           this.offset += 18;
           this.loading = true;
           if (this.offset >= this.totalCount) {
+            // if all the gifs are taken, we end the request
             this.finished = true;
           } else {
             await this.getGifs({ query: this.query, offset: this.offset });
@@ -105,6 +107,7 @@ export default {
     await this.scroll();
   },
   computed: {
+    // array of gifs located in the state
     ...mapState("gifs", ["gifs", "totalCount"]),
   },
 };
