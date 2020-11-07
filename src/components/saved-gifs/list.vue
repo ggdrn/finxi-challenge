@@ -4,11 +4,20 @@
       <sui-modal-header>Gifs Salvas</sui-modal-header>
       <sui-modal-content scrolling>
         <sui-modal-description>
-          <sui-container>
-            <sui-grid centered :columns="2">
-              <GifCard v-for="gif in savedGifs" :item="gif" :key="gif.id" />
-            </sui-grid>
-          </sui-container>
+          <transition name="slide-fade">
+            <template v-if="edit">
+              <p>EDITANO</p>
+            </template>
+          </transition>
+          <transition name="slide-fade">
+            <template v-if="!edit">
+              <sui-container>
+                <sui-grid centered :columns="2">
+                  <GifCard editable v-for="gif in savedGifs" :item="gif" :key="gif.id" />
+                </sui-grid>
+              </sui-container>
+            </template>
+          </transition>
         </sui-modal-description>
       </sui-modal-content>
       <sui-modal-actions>
@@ -26,6 +35,9 @@ export default {
   name: "SavedGifList",
   props: { savedGifs: Array, open: Boolean },
   components: { GifCard },
+  data: () => ({
+    edit: false, // switch template
+  }),
   computed: {
     modal() {
       return this.open;

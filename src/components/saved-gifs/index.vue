@@ -26,7 +26,7 @@ export default {
   name: "SavedGifs",
   components: { SavedGifList },
   data: () => ({
-    open: false,
+    open: false
   }),
   computed: {
     ...mapState("savedGifs", ["savedGifs"]),

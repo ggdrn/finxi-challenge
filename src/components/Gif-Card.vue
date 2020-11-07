@@ -16,6 +16,13 @@
                 size="small"
                 name="like"
               />
+              <sui-icon
+                v-if="editable"
+                class="right floated"
+                circular
+                size="small"
+                name="edit"
+              />
             </sui-card-header>
             <sui-card-meta>{{ username }}</sui-card-meta>
             <sui-card-description
@@ -59,6 +66,7 @@ export default {
       type: Object,
       default: () => ({}),
     },
+    editable: Boolean,
   },
   created() {
     this.setImage();
