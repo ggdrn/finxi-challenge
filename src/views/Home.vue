@@ -20,8 +20,8 @@
         @search-gifs="searchGifs($event)"
       />
       <Alert :message="message" @close-alert="message.show = $event" />
-      <sui-container aligned="center">
-        <sui-grid :columns="3">
+      <sui-container>
+        <sui-grid centred :columns="3">
           <GifCard v-for="gif in gifs" :item="gif" :key="gif.id" />
         </sui-grid>
       </sui-container>
@@ -38,7 +38,7 @@ import { mapActions, mapState } from "vuex";
 // componets
 import CrawText from "../components/gifs/Craw-Text";
 import Search from "../components/gifs/Search";
-import GifCard from "../components/gifs/Gif-Card";
+import GifCard from "../components/Gif-Card";
 import SavedGifs from "../components/saved-gifs/";
 import Alert from "../components/Alert";
 // layout

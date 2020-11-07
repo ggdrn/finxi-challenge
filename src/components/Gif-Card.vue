@@ -38,10 +38,10 @@
 import { mapActions } from "vuex";
 
 //Utils
-import { ratingDictionary } from "../../utils";
+import { ratingDictionary } from "../utils";
 
 // Components
-import InfoGif from "./Info-Gif";
+import InfoGif from "./gifs/Info-Gif";
 
 export default {
   name: "GifCard",
@@ -51,7 +51,7 @@ export default {
       text: "Clique no coração para salvar essa GIF! :)",
       title: "Gostou?",
     },
-    gifUrl: require("../.././assets/loading.gif"),
+    gifUrl: require(".././assets/loading.gif"),
   }),
   components: { InfoGif },
   props: {

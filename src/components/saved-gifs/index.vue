@@ -1,21 +1,33 @@
 <template>
   <sui-container>
     <sui-button
+      @click="open = true"
       circular
       class="saved-gif-btn"
       floated="right"
       color="yellow"
-      >{{ length }} 
+      >{{ length }}
       <sui-icon color="red" size="small" name="like" />
     </sui-button>
+    <SavedGifList
+      :savedGifs="savedGifs"
+      :open="open"
+      @close-modal="open = $event"
+    />
   </sui-container>
 </template>
 
 <script>
+// vuex
 import { mapState } from "vuex";
+// components
+import SavedGifList from "./list";
 export default {
   name: "SavedGifs",
-  data: () => ({}),
+  components: { SavedGifList },
+  data: () => ({
+    open: false,
+  }),
   computed: {
     ...mapState("savedGifs", ["savedGifs"]),
     length() {

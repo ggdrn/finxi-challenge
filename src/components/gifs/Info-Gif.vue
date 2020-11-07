@@ -1,7 +1,7 @@
 <template>
-  <sui-modal v-model="open">
+  <sui-modal v-model="modal">
     <sui-modal-header>Informações da GIF</sui-modal-header>
-    <sui-modal-content image>
+    <sui-modal-content scrolling image>
       <sui-image size="medium" :src="gif.url" />
       <sui-modal-description>
         <sui-header>{{ gif.title }}</sui-header>
@@ -31,6 +31,9 @@ export default {
     // Props Computed
     rating() {
       return ratingDictionary[this.gif.rating];
+    },
+    modal(){
+      return this.open
     },
     username() {
       return this.gif.username == ""
