@@ -25,7 +25,7 @@
     <sui-container>
       <sui-button
         @click="skipIntro()"
-        basic
+        inverted
         class="skip-button"
         floated="right"
         icon="fast forward"

@@ -25,6 +25,7 @@
           <GifCard v-for="gif in gifs" :item="gif" :key="gif.id" />
         </sui-grid>
       </sui-container>
+      <SavedGifs />
       <Footer :loading="loading" :finished="finished" :length="gifs.length" />
     </template>
   </div>
@@ -38,13 +39,14 @@ import { mapActions, mapState } from "vuex";
 import CrawText from "../components/gifs/Craw-Text";
 import Search from "../components/gifs/Search";
 import GifCard from "../components/gifs/Gif-Card";
+import SavedGifs from "../components/saved-gifs/";
 import Alert from "../components/Alert";
 // layout
 import Footer from "../layouts/Footer";
 
 export default {
   name: "App",
-  components: { CrawText, Search, GifCard, Footer, Alert },
+  components: { CrawText, Search, GifCard, Footer, Alert, SavedGifs },
   data: () => ({
     skipCrawText: true, // skip introducion
     offset: 0, // gif page position
