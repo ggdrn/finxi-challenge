@@ -22,7 +22,7 @@
           </transition>
           <sui-container v-if="!savedGifs.length">
             <sui-grid centered :columns="1">
-              <h3>Você ainda não salvou nenhuma GIF!</h3>
+              <h3>Nenhuma GIF foi salva.</h3>
             </sui-grid>
           </sui-container>
           <transition name="slide-fade">
