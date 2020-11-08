@@ -2,7 +2,7 @@
   <div>
     <sui-modal v-model="modal">
       <sui-modal-header
-        >Gifs Salvas
+        >GIFS Salvas
         <sui-button
           circular
           compact

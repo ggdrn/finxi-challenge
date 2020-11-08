@@ -84,8 +84,8 @@ export default {
         await this.addSavedGifs(this.item);
       } else {
         gif.saved = false;
-        this.editGif(gif);
-        this.deleteSavedGifs(gif);
+        await this.editGif(gif);
+        await this.deleteSavedGifs(gif);
       }
     },
     setImage() {
