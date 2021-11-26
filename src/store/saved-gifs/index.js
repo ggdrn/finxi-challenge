@@ -1,20 +1,23 @@
-import { editSavedGifs, deleteSavedGifs, addSavedGifs } from "../../services";
+import { editSavedGifs, deleteSavedGifs, addSavedGifs, getSavedGifs } from "../../services";
 
 export const state = {
 	savedGifs: [],
 };
 export const mutations = {
-	ADD_SAVEDGIFS(state, gif) {
+	GET_SAVEDGIFS (state, gifs) {
+		state.savedGifs = gifs
+	},
+	ADD_SAVEDGIFS (state, gif) {
 		state.savedGifs.push(gif)
 	},
-	EDIT_SAVEGIFS(state, gif) {
+	EDIT_SAVEGIFS (state, gif) {
 		state.savedGifs = state.savedGifs.map(g => {
 			if (g.id == gif.id)
 				g = gif
 			return g
 		})
 	},
-	DELETE_SAVEDGIFS(state, gif) {
+	DELETE_SAVEDGIFS (state, gif) {
 		state.savedGifs.forEach((g, index) => {
 			if (g.id == gif.id)
 				return state.savedGifs.splice(index, 1);
@@ -23,7 +26,11 @@ export const mutations = {
 	}
 }
 export const actions = {
-	async editSavedGifs({ commit }, gif) {
+	async getSavedGifs ({ commit }) {
+		const data = await getSavedGifs();
+		commit('GET_SAVEDGIFS', data)
+	},
+	async editSavedGifs ({ commit }, gif) {
 		// save gif in database
 		let { success, error } = await editSavedGifs(gif);
 		if (success) {
@@ -34,7 +41,7 @@ export const actions = {
 			return error
 		}
 	},
-	async addSavedGifs({ commit }, gif) {
+	async addSavedGifs ({ commit }, gif) {
 		// added gif in database
 		let { success, error } = await addSavedGifs(gif);
 		if (success) {
@@ -45,7 +52,7 @@ export const actions = {
 			return error
 		}
 	},
-	async deleteSavedGifs({ commit }, gif) {
+	async deleteSavedGifs ({ commit }, gif) {
 		// save gif in database
 		let { success, error } = await deleteSavedGifs(gif);
 		if (success) {

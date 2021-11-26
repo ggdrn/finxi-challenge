@@ -1,33 +1,24 @@
 <template>
   <div>
-    <template v-if="skipCrawText">
-      <transition name="fade">
-        <CrawText @skip-intro="skipCrawText = $event" />
-      </transition>
-    </template>
-    <template v-else>
-      <sui-segment vertical aligned="center">
-        <div class="ui text container">
-          <h1>Desafio Finxi</h1>
-          <h2>
-            Vamos destruir Darth Vader usando as melhores GIFS da Giphy API!
-          </h2>
-        </div>
-      </sui-segment>
-      <Search
-        :loading="loading"
-        @alert-message="message = $event"
-        @search-gifs="searchGifs($event)"
-      />
-      <Alert :message="message" @close-alert="message.show = $event" />
-      <sui-container>
-        <sui-grid centred :columns="3">
-          <GifCard v-for="gif in gifs" :item="gif" :key="gif.id" />
-        </sui-grid>
-      </sui-container>
-      <SavedGifs />
-      <Footer :loading="loading" :finished="finished" :length="gifs.length" />
-    </template>
+    <sui-segment vertical aligned="center">
+      <div class="ui text container">
+        <h1>Desafio Finxi</h1>
+        <h2>Vamos destruir Darth Vader usando as melhores GIFS da Giphy API!</h2>
+      </div>
+    </sui-segment>
+    <Search
+      :loading="loading"
+      @alert-message="message = $event"
+      @search-gifs="searchGifs($event)"
+    />
+    <Alert :message="message" @close-alert="message.show = $event" />
+    <sui-container>
+      <sui-grid centred :columns="3">
+        <GifCard v-for="gif in gifs" :item="gif" :key="gif.id" />
+      </sui-grid>
+    </sui-container>
+    <SavedGifs />
+    <Footer :loading="loading" :finished="finished" :length="gifs.length" />
   </div>
 </template>
 
@@ -36,7 +27,6 @@
 import { mapActions, mapState } from "vuex";
 
 // componets
-import CrawText from "../components/gifs/Craw-Text";
 import Search from "../components/gifs/Search";
 import GifCard from "../components/Gif-Card";
 import SavedGifs from "../components/saved-gifs/";
@@ -46,9 +36,8 @@ import Footer from "../layouts/Footer";
 
 export default {
   name: "App",
-  components: { CrawText, Search, GifCard, Footer, Alert, SavedGifs },
+  components: { Search, GifCard, Footer, Alert, SavedGifs },
   data: () => ({
-    skipCrawText: true, // skip introducion
     offset: 0, // gif page position
     query: "", // value received from the input to search for gifs
     loading: false, // requisition loading feedback

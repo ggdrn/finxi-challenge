@@ -9,17 +9,13 @@
       >{{ length }}
       <sui-icon color="red" size="small" name="like" />
     </sui-button>
-    <SavedGifList
-      :savedGifs="savedGifs"
-      :open="open"
-      @close-modal="open = $event"
-    />
+    <SavedGifList :savedGifs="savedGifs" :open="open" @close-modal="open = $event" />
   </sui-container>
 </template>
 
 <script>
 // vuex
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 // components
 import SavedGifList from "./List";
 export default {
@@ -28,6 +24,12 @@ export default {
   data: () => ({
     open: false, // modal controller
   }),
+  async created() {
+    await this.getSavedGifs();
+  },
+  methods: {
+    ...mapActions("savedGifs", ["getSavedGifs"]),
+  },
   computed: {
     ...mapState("savedGifs", ["savedGifs"]),
     length() {
