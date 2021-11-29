@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
-// import { mainMiddleware } from '@/utils/router/';
+import { mainMiddleware } from '@/utils/router/';
 
 
 Vue.use(Router);
@@ -48,9 +48,9 @@ const router = new Router({
 });
 
 // Middleware
-// router.beforeEach(async (to, from, next) => {
-// 	mainMiddleware(to, from, next);
-// });
+router.beforeEach(async (to, from, next) => {
+	mainMiddleware(to, from, next);
+});
 
 
 export default router;

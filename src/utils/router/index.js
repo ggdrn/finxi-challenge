@@ -1,10 +1,9 @@
 import router from '@/router';
-// import userStore from '@/composibles/user';
+import store from '@/store';
 
 const hasUser = () => {
-    // return !!userStore.state.user.key;
-    return false;
-};
+    return !!store.state.user.user.id;
+}
 
 const middlewareUsers = async (to, next) => {
     // a partir do valor da chave, podemos saber se o usuário está logado
